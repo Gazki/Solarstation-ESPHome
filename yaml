@@ -1,6 +1,7 @@
 # Sensoren:
-#   tSolar, tBoilerTop, tBoilerMiddle, tBoilerDown, tViesmann, tInputHeatExchanger
-#   tBoilerInput -> TemperaturSensor at entry to heat exchanger
+#   tSolar -> PT100 with MAX31865
+#   tBoilerTop, tBoilerMiddle, tBoilerDown, tViesmann -> Dallas DS18B20 
+#   tInputHeatExchanger -> PT100 with MAX31865 -> TemperaturSensor at entry to heat exchanger
 #
 # Pumpen:
 #   pumpeSolar, pumpeCirculation
