@@ -1,1 +1,36 @@
+# Sensoren:
+#   tSolar, tBoilerTop, tBoilerMiddle, tBoilerDown, tViesmann, tInputHeatExchanger
+#   tBoilerInput -> TemperaturSensor at entry to heat exchanger
+#
+# Pumpen:
+#   pumpeSolar, pumpeCirculation
+#
+# Constant:
+#   deltaSolar, deltaBoilerToViesmann
 
+# you can set:
+#   deltaSolar -> between 0 and 60
+#   deltaBoilerToViesmann -> between 0 and 60
+
+#
+# Logic:
+#   PumpeSolar ON:
+#   if( (tSolar-tBoilerMiddle) > deltaSolar )
+#         turnPumpeON(pumpeSolar);
+#   
+#   PumpeSolar OFF: 
+#   if( (tInputHeatExchanger-tBoilerMiddle) < deltaSolar )
+#         turnPumpeOFF(pumpeSolar);
+#
+#   PumpeCirculationON:
+#   if( (tBoilerTop-tViesmann) > deltaBoilerToViesmann )
+#         turnPumpeON(pumpeCirculation);
+#
+#   PumpeCirculationOFF:
+#   if( (tBoilerTop-tViesmann) < deltaBoilerToViesmann )
+#         turnPumpeOFF(pumpeCirculation);
+#
+#   to do:
+#     1. Setting delta
+#     2. Show LED
+#     3. MQTT-Broker
