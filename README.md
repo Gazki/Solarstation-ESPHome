@@ -28,8 +28,8 @@ PT100:
   - VIN connects to 5V (3V3 will output 3.3V), or directly connect 3V3 to 3.3V
   - 3Vo is not used by ESPHome
   - GND connects to ground
-  - CLK connects to the SPI clk_pin 
-  - SDO connects to the SPI miso_pin
-  - SDI connects to the SPI mosi_pin
-  - CS connects to a free GPIO pin
+  - CLK connects to the SPI clk_pin   / GPIO6
+  - SDO connects to the SPI miso_pin  / GPIO7 
+  - SDI connects to the SPI mosi_pin  / GPIO8
+  - CS connects to a free GPIO pin    / GPIO17
   - RDY is not used by ESPHome
