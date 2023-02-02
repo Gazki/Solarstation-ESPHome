@@ -17,3 +17,8 @@ Output:
   1. Pumpe Solar
   2. Pumpe Circulation
   3. LED
+
+
+  You can actually connect multiple sensors to a single pin and use them all at once.
+  4x ds18b20 will be connect to pin23 of ESP32
+  
