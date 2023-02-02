@@ -25,11 +25,11 @@ Dallas:
   
 PT100:
   https://esphome.io/components/sensor/max31865.html
-  VIN connects to 5V (3V3 will output 3.3V), or directly connect 3V3 to 3.3V
-  3Vo is not used by ESPHome
-  GND connects to ground
-  CLK connects to the SPI clk_pin 
-  SDO connects to the SPI miso_pin
-  SDI connects to the SPI mosi_pin
-  CS connects to a free GPIO pin
-  RDY is not used by ESPHome
+  - VIN connects to 5V (3V3 will output 3.3V), or directly connect 3V3 to 3.3V
+  - 3Vo is not used by ESPHome
+  - GND connects to ground
+  - CLK connects to the SPI clk_pin 
+  - SDO connects to the SPI miso_pin
+  - SDI connects to the SPI mosi_pin
+  - CS connects to a free GPIO pin
+  - RDY is not used by ESPHome
