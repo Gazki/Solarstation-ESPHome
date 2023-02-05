@@ -21,11 +21,16 @@ Output:
 
 Dallas:
   You can actually connect multiple sensors to a single pin and use them all at once.
-  4x ds18b20 will be connect to pin23 of ESP32
+  // --------------- 4x ds18b20 will be connect to pin23 of ESP32
+  4x ds18b20 will be connect to ESP32: 
+    - GPIO14
+    - GPIO25
+    - GPIO26
+    - GPIO27  
   Pinout description for a ESP-WROOM-32 see hier:
   https://www.studiopieters.nl/esp32-pinout/
-  
-PT100:
+    
+PT100 with MAX31865:
   https://esphome.io/components/sensor/max31865.html
   - VIN connects to 5V (3V3 will output 3.3V), or directly connect 3V3 to 3.3V
   - 3Vo is not used by ESPHome
