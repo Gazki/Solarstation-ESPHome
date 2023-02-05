@@ -14,8 +14,8 @@ Input:
   3. Setting for delta, Wlan, Language
   
 Output:
-  1. Pumpe Solar
-  2. Pumpe Circulation
+  1. Pumpe Solar        GPIO32
+  2. Pumpe Circulation  GPIO33
   3. LED
 
 
