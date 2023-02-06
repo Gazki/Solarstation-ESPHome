@@ -35,3 +35,55 @@
 #     1. Setting delta
 #     2. Show LED
 #     3. MQTT-Broker
+
+# ------------------ MAX31865 configuration for 2x PT100 -------
+# --------------------------------------------------------------
+spi:
+  miso_pin: GPIO19
+  mosi_pin: GPIO23
+  clk_pin: GPIO18
+
+sensor:     # Sensor pSolar (at Solarpanel)
+  - platform: max31865
+    name: "pSolar"
+    cs_pin: GPIO05
+    reference_resistance: 430 Ω     # Reference resistor on the PCB. PT100 uses 430 Ω, their PT1000 uses 4300 Ω
+    rtd_nominal_resistance: 100 Ω   # Nominal resistance of the RTD at 0°C. PT100 is 100 Ω, PT1000 is 1000 Ω.
+ 
+ sensor:  # Sensor tInputHeatExchanger (at entry to heat exchanger)
+  - platform: max31865
+    name: "tInputHeatExchanger"
+    cs_pin: GPIO17
+    reference_resistance: 430 Ω
+    rtd_nominal_resistance: 100 Ω
+ 
+ # ---------------------------------------------------
+ # ---------- DS18B20 Dallas 4x configuration --------
+dallas:
+  - pin: GPIO25
+sensor:
+  - platform: dallas
+    address: 0x1c0000031edd2a28
+    name: "tBoilerTop"
+
+dallas:
+  - pin: GPIO26
+sensor:
+  - platform: dallas
+    address: 0x1c0000031edd2a28
+    name: "tBoilerMiddle"
+
+dallas:
+  - pin: GPIO27
+sensor:
+  - platform: dallas
+    address: 0x1c0000031edd2a28
+    name: "tBoilerDown"
+
+dallas:
+  - pin: GPIO14
+sensor:
+  - platform: dallas
+    address: 0x1c0000031edd2a28
+    name: "tViesmann"
+ 
