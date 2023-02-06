@@ -86,4 +86,24 @@ sensor:
   - platform: dallas
     address: 0x1c0000031edd2a28
     name: "tViesmann"
- 
+    
+# ---------------- Number component for delta --------
+ number:
+  - platform: template
+    name: "deltaSolar"
+    id: deltaSolar
+    optimistic: true
+    initial_value: 5  
+    min_value: 0
+    max_value: 99
+    step: 1
+
+  - platform: template
+    name: "deltaBoilerToViesmann"
+    id: deltaBoilerToViesmann
+    optimistic: true
+    initial_value: 5  
+    min_value: 0
+    max_value: 99
+    step: 1
+# ---------------------------------------------------
