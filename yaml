@@ -107,3 +107,16 @@ sensor:
     max_value: 99
     step: 1
 # ---------------------------------------------------
+# ---- Binary Sensor -> Delta solar UP / DOWN -------
+binary_sensor:
+  - platform: template
+    name: "Delta UP -> Pumpe ON"
+    id: deltaSolarUP
+    lambda: |-
+      if (id(ultrasonic_sensor1).state > 30) {
+        // Garage Door is open.
+        return true;
+      } else {
+        // Garage Door is closed.
+        return false;
+      }
