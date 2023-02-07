@@ -1,1 +1,2 @@
 1. ESPHome -> Automatisation with sensor / binary sensor
+2. lambda in ESPHome
