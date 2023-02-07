@@ -43,22 +43,7 @@ spi:
   mosi_pin: GPIO23
   clk_pin: GPIO18
 
-sensor:     # Sensor pSolar (at Solarpanel)
-  - platform: max31865
-    name: "pSolar"
-    id: pSolar
-    cs_pin: GPIO05
-    reference_resistance: 430 Ω     # Reference resistor on the PCB. PT100 uses 430 Ω, their PT1000 uses 4300 Ω
-    rtd_nominal_resistance: 100 Ω   # Nominal resistance of the RTD at 0°C. PT100 is 100 Ω, PT1000 is 1000 Ω.
- 
- sensor:  # Sensor tInputHeatExchanger (at entry to heat exchanger)
-  - platform: max31865
-    name: "tInputHeatExchanger"
-    id: tInputHeatExchanger
-    cs_pin: GPIO17
-    reference_resistance: 430 Ω
-    rtd_nominal_resistance: 100 Ω
- 
+
  # ---------------------------------------------------
  # ---------- DS18B20 Dallas 4x configuration --------
 dallas:
@@ -70,6 +55,7 @@ dallas:
     pin: GPIO27
   - id: dallas_on_14
     pin: GPIO14
+    
 sensor:
   - platform: dallas
     dallas_id: dallas_on_25
@@ -94,9 +80,26 @@ sensor:
     address: 0x1c0000031edd2a28
     name: "tViesmann"
     id: tViesmann
+ 
+# Sensor pSolar (at Solarpanel)
+  - platform: max31865
+    name: "tSolar"
+    id: tSolar
+    cs_pin: GPIO05
+    reference_resistance: 430 Ω     # Reference resistor on the PCB. PT100 uses 430 Ω, their PT1000 uses 4300 Ω
+    rtd_nominal_resistance: 100 Ω   # Nominal resistance of the RTD at 0°C. PT100 is 100 Ω, PT1000 is 1000 Ω.
+ 
+# Sensor tInputHeatExchanger (at entry to heat exchanger)
+  - platform: max31865
+    name: "tInputHeatExchanger"
+    id: tInputHeatExchanger
+    cs_pin: GPIO17
+    reference_resistance: 430 Ω
+    rtd_nominal_resistance: 100 Ω
+ 
     
 # ---------------- Number component for delta --------
- number:
+number:
   - platform: template
     name: "deltaSolar"    # delta between Solar and boiler
     id: deltaSolar
@@ -130,7 +133,6 @@ binary_sensor:
 
 # Binary sensor goes to true, if (tBoilerTop-tViesmann) > deltaBoilerToViesmann
 # ATTENTION: if temp in Boiler lower as in Viesmann, then turn pumpeCirculation ON. Look to < in expression!!!!
-binary_sensor:
   - platform: template
     name: "DeltaBoilertoViesmann UP -> PumpeBoilerViesmann ON"
     id: deltaBoilerToViesmannUP      
