@@ -1,1 +1,1 @@
-
+1. ESPHome -> Automatisation with sensor / binary sensor
