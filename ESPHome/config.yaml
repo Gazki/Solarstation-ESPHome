@@ -138,3 +138,16 @@ binary_sensor:
       } else {
         return false;
       }
+
+# Switch Component -> to control pump relay.
+switch:     
+  - platform: gpio
+    pin: GPIO32
+    name: "Solarpumpe"
+    id: pumpeSolar
+    
+  - platform: gpio
+    pin: GPIO33
+    name: "Zirkulationspumpe"
+    id: pumpeCirculation
+    
