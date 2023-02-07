@@ -32,7 +32,7 @@
 #         turnPumpeOFF(pumpeCirculation);
 #
 #   to do:
-#     1. Setting delta
+#   + 1. Setting delta 
 #     2. Show LED
 #     3. MQTT-Broker
 
@@ -62,33 +62,35 @@ sensor:     # Sensor pSolar (at Solarpanel)
  # ---------------------------------------------------
  # ---------- DS18B20 Dallas 4x configuration --------
 dallas:
-  - pin: GPIO25
+  - id: dallas_on_25
+    pin: GPIO25
+  - id: dallas_on_26
+    pin: GPIO26
+  - id: dallas_on_27
+    pin: GPIO27
+  - id: dallas_on_14
+    pin: GPIO14
 sensor:
   - platform: dallas
+    dallas_id: dallas_on_25
     address: 0x1c0000031edd2a28
     name: "tBoilerTop"
     id: tBoilerTop
 
-dallas:
-  - pin: GPIO26
-sensor:
   - platform: dallas
+    dallas_id: dallas_on_26
     address: 0x1c0000031edd2a28
     name: "tBoilerMiddle"
     id: tBoilerMiddle
 
-dallas:
-  - pin: GPIO27
-sensor:
   - platform: dallas
+    dallas_id: dallas_on_27
     address: 0x1c0000031edd2a28
     name: "tBoilerDown"
     id: tBoilerDown
 
-dallas:
-  - pin: GPIO14
-sensor:
   - platform: dallas
+    dallas_id: dallas_on_14
     address: 0x1c0000031edd2a28
     name: "tViesmann"
     id: tViesmann
