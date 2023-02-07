@@ -1,0 +1,140 @@
+# Sensoren:
+#   tSolar -> PT100 with MAX31865
+#   tBoilerTop, tBoilerMiddle, tBoilerDown, tViesmann -> Dallas DS18B20 
+#   tInputHeatExchanger -> PT100 with MAX31865 -> TemperaturSensor at entry to heat exchanger
+#
+# Pumpen:
+#   pumpeSolar, pumpeCirculation
+#
+# Constant:
+#   deltaSolar, deltaBoilerToViesmann
+
+# you can set:
+#   deltaSolar -> between 0 and 60
+#   deltaBoilerToViesmann -> between 0 and 60
+
+#
+# Logic:
+#   PumpeSolar ON:
+#   if( (deltaSolarUP )
+#         turnPumpeON(pumpeSolar);
+#   
+#   PumpeSolar OFF: 
+#   if( (tInputHeatExchanger-tBoilerMiddle) < deltaSolar )
+#         turnPumpeOFF(pumpeSolar);
+#
+#   PumpeCirculationON:
+#   if( (tBoilerTop-tViesmann) > deltaBoilerToViesmann )
+#         turnPumpeON(pumpeCirculation);
+#
+#   PumpeCirculationOFF:
+#   if( (tBoilerTop-tViesmann) < deltaBoilerToViesmann )
+#         turnPumpeOFF(pumpeCirculation);
+#
+#   to do:
+#     1. Setting delta
+#     2. Show LED
+#     3. MQTT-Broker
+
+# ------------------ MAX31865 configuration for 2x PT100 -------
+# --------------------------------------------------------------
+spi:
+  miso_pin: GPIO19
+  mosi_pin: GPIO23
+  clk_pin: GPIO18
+
+sensor:     # Sensor pSolar (at Solarpanel)
+  - platform: max31865
+    name: "pSolar"
+    id: pSolar
+    cs_pin: GPIO05
+    reference_resistance: 430 Ω     # Reference resistor on the PCB. PT100 uses 430 Ω, their PT1000 uses 4300 Ω
+    rtd_nominal_resistance: 100 Ω   # Nominal resistance of the RTD at 0°C. PT100 is 100 Ω, PT1000 is 1000 Ω.
+ 
+ sensor:  # Sensor tInputHeatExchanger (at entry to heat exchanger)
+  - platform: max31865
+    name: "tInputHeatExchanger"
+    id: tInputHeatExchanger
+    cs_pin: GPIO17
+    reference_resistance: 430 Ω
+    rtd_nominal_resistance: 100 Ω
+ 
+ # ---------------------------------------------------
+ # ---------- DS18B20 Dallas 4x configuration --------
+dallas:
+  - pin: GPIO25
+sensor:
+  - platform: dallas
+    address: 0x1c0000031edd2a28
+    name: "tBoilerTop"
+    id: tBoilerTop
+
+dallas:
+  - pin: GPIO26
+sensor:
+  - platform: dallas
+    address: 0x1c0000031edd2a28
+    name: "tBoilerMiddle"
+    id: tBoilerMiddle
+
+dallas:
+  - pin: GPIO27
+sensor:
+  - platform: dallas
+    address: 0x1c0000031edd2a28
+    name: "tBoilerDown"
+    id: tBoilerDown
+
+dallas:
+  - pin: GPIO14
+sensor:
+  - platform: dallas
+    address: 0x1c0000031edd2a28
+    name: "tViesmann"
+    id: tViesmann
+    
+# ---------------- Number component for delta --------
+ number:
+  - platform: template
+    name: "deltaSolar"    # delta between Solar and boiler
+    id: deltaSolar
+    optimistic: true
+    initial_value: 5  
+    min_value: 0
+    max_value: 99
+    step: 1
+
+  - platform: template
+    name: "deltaBoilerToViesmann"     # delta between Boiler and Viesmann
+    id: deltaBoilerToViesmann
+    optimistic: true
+    initial_value: 5  
+    min_value: 0
+    max_value: 99
+    step: 1
+# ---------------------------------------------------
+# ---- Binary Sensor -> Delta solar UP / DOWN -------
+# Binary Sensor goes to true, if a (tSolar-tBoilerMiddle) > deltaSolar
+binary_sensor:
+  - platform: template
+    name: "DeltaSolar UP -> PumpeSolar ON"      
+    id: deltaSolarUP
+    lambda: |-
+      if ( (id(tSolar).state - id(tBoilerMiddle).state) > id.(deltaSolar).state ) {
+        return true;    // tSolar > tBoilerMiddle -> turn PumpSolar ON
+      } else {
+        return false;   
+      }
+
+# Binary sensor goes to true, if (tBoilerTop-tViesmann) > deltaBoilerToViesmann
+# ATTENTION: if temp in Boiler lower as in Viesmann, then turn pumpeCirculation ON. Look to < in expression!!!!
+binary_sensor:
+  - platform: template
+    name: "DeltaBoilertoViesmann UP -> PumpeBoilerViesmann ON"
+    id: deltaBoilerToViesmannUP      
+    lambda: |-
+      if ( (id(tBoilerTop).state - id(tViesmann).state) < id(deltaBoilerToViesmann).state ) {
+        return true;    // temp in Boiler is more than in Viesmann 
+      } else {
+        return false;
+      }
