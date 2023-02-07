@@ -125,9 +125,12 @@ binary_sensor:
     name: "DeltaSolar UP -> PumpeSolar ON"      
     id: deltaSolarUP
     lambda: |-
+      // tSolar > tBoilerMiddle -> turn PumpSolar ON
       if ( (id(tSolar).state - id(tBoilerMiddle).state) > id.(deltaSolar).state ) {
-        return true;    // tSolar > tBoilerMiddle -> turn PumpSolar ON
+        id(pumpeSolar).turn_on();
+        return true;    
       } else {
+        id(pumpeSolar).turn_off();
         return false;   
       }
 
@@ -137,11 +140,20 @@ binary_sensor:
     name: "DeltaBoilertoViesmann UP -> PumpeBoilerViesmann ON"
     id: deltaBoilerToViesmannUP      
     lambda: |-
+      // temp in Boiler is more than in Viesmann -> then turn the circilation pump ON
       if ( (id(tBoilerTop).state - id(tViesmann).state) < id(deltaBoilerToViesmann).state ) {
-        return true;    // temp in Boiler is more than in Viesmann 
+        id(pumpeCirculation).turn_on();         
+        return true;     
       } else {
+        id(pumpeCirculation).turn_off();
         return false;
       }
+# Lambda will run continuously!!!!
+# to do: 
+#       add filter to smooth the temp data
+#       add timeout to rollout the Pumpe. It mean, that the pump schoud/can run a little time after the 
+#       deltaSolarUP is goes to false.
+#       Do i need it realy?
 
 # Switch Component -> to control pump relay.
 switch:     
