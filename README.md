@@ -1,11 +1,11 @@
 # Solarstation-ESPHome
-Solarstation für Solarthermie mit ESP32, ESPHome, HomeAssistant
+Solarstation for Solarthermie with ESP32, ESPHome, HomeAssistant
 
-Komponenten: 
+Komponents: 
   1. ESP32
-  2. LED oder OLED Display
-  3. Integration mit HomeAssistant
-  4. Gehäuse (3D-Druck?)
+  2. LED or OLED Display
+  3. Integration with HomeAssistant
+  4. Case (3D-Print?)
 
 
 Input: 
