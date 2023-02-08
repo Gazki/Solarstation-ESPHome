@@ -21,7 +21,7 @@ Output:
 
 Dallas:
   You can actually connect multiple sensors to a single pin and use them all at once.
-  // --------------- 4x ds18b20 will be connect to pin23 of ESP32
+  // ----------------------------------
   4x ds18b20 will be connect to ESP32: 
     - GPIO14
     - GPIO25
