@@ -41,3 +41,5 @@ Dallas:
   - SDI connects to the SPI mosi_pin  / GPIO23    /GPIO8
   - CS connects to a free GPIO pin    / GPIO5     /GPIO17
   - RDY is not used by ESPHome
+
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/J3J6IRJUR)
