@@ -43,3 +43,4 @@ Dallas:
   - RDY is not used by ESPHome
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/J3J6IRJUR)
+[![paypal](https://www.paypalobjects.com/webstatic/en_US/i/buttons/PP_logo_h_100x26.png)](https://paypal.me/Gazki)
