@@ -2,14 +2,15 @@
 Solarstation for Solarthermie with ESP32, ESPHome, HomeAssistant
 
 Komponents: 
-  1. ESP32
-  2. LED or OLED Display
+  1. ESP32 https://de.aliexpress.com/item/1005003413562394.html
+  2. LED or OLED Display https://de.aliexpress.com/item/4000790549724.html
   3. Integration with HomeAssistant
   4. Case (3D-Print?)
-
+  5. 2 Way Relay https://de.aliexpress.com/item/33038634587.html
+  6. MAX31865 https://de.aliexpress.com/item/1005001351273869.html
 
 Input: 
-  1. 4x TemperaturSensor ds18b20
+  1. 4x TemperaturSensor ds18b20	
   2. 2x PT100 
   3. Setting for delta, Wlan, Language
   
