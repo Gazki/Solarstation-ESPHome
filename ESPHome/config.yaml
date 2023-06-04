@@ -1,3 +1,35 @@
+esphome:
+  name: solarsteuerung
+  friendly_name: Solarsteuerung
+
+esp32:
+  board: esp32dev
+  framework:
+    type: arduino
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  encryption:
+    key: !secret api_home_assistant
+
+ota:
+  password: !secret ota_password
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Solarsteuerung Fallback Hotspot"
+    password: !secret wifi_password_hotspot
+
+
+
+
 # Sensoren:
 #   tSolar -> PT100 with MAX31865
 #   tBoilerTop, tBoilerMiddle, tBoilerDown, tViesmann -> Dallas DS18B20 
@@ -126,7 +158,7 @@ binary_sensor:
     id: deltaSolarUP
     lambda: |-
       // tSolar > tBoilerMiddle -> turn PumpSolar ON
-      if ( (id(tSolar).state - id(tBoilerMiddle).state) > id.(deltaSolar).state ) {
+      if ( (id(tSolar).state - id(tBoilerMiddle).state) > id(deltaSolar).state ) {
         id(pumpeSolar).turn_on();
         return true;    
       } else {
