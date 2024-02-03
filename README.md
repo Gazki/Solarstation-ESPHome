@@ -43,5 +43,10 @@ Dallas:
   - CS connects to a free GPIO pin    / GPIO5     /GPIO17
   - RDY is not used by ESPHome
 
+![Top](https://github.com/Gazki/Solarstation-ESPHome/blob/main/Images/2023-02-16%2012_46_46-EasyEDA(Standard)%20-%20A%20Simple%20and%20Powerful%20Electronic%20Circuit%20Design%20Tool.png)
+
+![Top](https://github.com/Gazki/Solarstation-ESPHome/blob/main/Images/2023-02-10%2011_04_44-EasyEDA(Standard)%20-%20A%20Simple%20and%20Powerful%20Electronic%20Circuit%20Design%20Tool.png)
+
+
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/J3J6IRJUR)
 [![paypal](https://www.paypalobjects.com/webstatic/en_US/i/buttons/PP_logo_h_100x26.png)](https://paypal.me/Gazki)
